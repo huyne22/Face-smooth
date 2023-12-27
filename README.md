@@ -7,3 +7,9 @@ OpenCV implementation of facial smoothing. Facial detection is done using an pre
 - Apply a bilateral filter to the Region of Interest
 - Apply filtered ROI back to original image
 
+before_install:
+    python -m venv venv
+    .\venv\Scripts\Activate
+    pip install numpy opencv-python
+    pip install -U PyYAML
+    pip install -r requirements.txt
