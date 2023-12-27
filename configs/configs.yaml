@@ -1,0 +1,41 @@
+#https://github.com/5starkarma/face-smoothing/blob/main/configs/configs.yaml
+# To change the effect of the smoothing change the image and filter values
+#https://stackoverflow.com/questions/60091496/can-i-retrain-opencv-dnn-face-detector-using-my-own-face-dataset-and-pb-pbtxt
+#https://github.com/opencv/opencv/blob/4eb296655958e9241f43a7bd144d5e63759f6cea/samples/dnn/face_detector/opencv_face_detector.pbtxt
+#https://github.com/spmallick/learnopencv/blob/master/AgeGender/opencv_face_detector_uint8.pb
+
+net:
+    #face decection by opencv DNN provide
+    model_file: 'models/opencv_face_detector_uint8.pb'
+    cfg_file: 'models/opencv_face_detector.pbtxt'
+    conf_threshold: 0.6 #confidence threshold must bigger 0.6
+
+image:
+    # hsv range affects the skin region to be selected for filtering
+    #https://pyimagesearch.com/2014/08/18/skin-detection-step-step-example-using-python-opencv/
+    hsv_low: !!python/tuple [0.,48.,80.] #!!python/tuple: help value convert correct tuple in python
+    hsv_high: !!python/tuple [20.,255.,255.]
+
+    # BlobFromImage settings
+    mean: [104, 117, 123]
+    size: !!python/tuple [200, 200]
+
+    # Output image filenames
+    output: 'output_'
+    output_steps: 'combined_'
+
+    bbox_color: !!python/tuple [255, 204, 102]
+
+    img_steps_height: 300
+
+video:
+    output: 'video_output_'
+    fps: 30
+
+filter:
+    # Diameter of each pixel neighborhood
+    diameter: 15
+
+    # Value of sigma in the color space. The greater the value, the colors farther to each other will start to get mixed.
+    sigma_1: 50 
+    sigma_2: 50
